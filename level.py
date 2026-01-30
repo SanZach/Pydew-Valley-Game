@@ -1,12 +1,18 @@
 import pygame
 from settings import *
+from player import Player
 
 class Level:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
         #sprite groups
         self.all_sprites = pygame.sprite.Group()
+        self.setup()
+    def setup(self):
+        self.player = Player((600, 300), self.all_sprites)
+
     def run(self, dt):   #dt to make everything frame rate independent
         self.display_surface.fill('black')
         self.all_sprites.draw(self.display_surface)
-        self.all_sprites.update()
+        self.all_sprites.update(dt)
+
